@@ -9,6 +9,12 @@ import org.testng.annotations.Parameters;
 import org.testng.asserts.SoftAssert;
 
 import com.dynamics.crm4.poqa.proMXSeleniumFramework.factory.DriverFactory;
+import com.dynamics.crm4.poqa.proMXSeleniumFramework.pages.HomePage;
+import com.dynamics.crm4.poqa.proMXSeleniumFramework.pages.LoginPage;
+import com.dynamics.crm4.poqa.proMXSeleniumFramework.pages.LoginUserPage;
+
+import com.dynamics.crm4.poqa.proMXSeleniumFramework.pages.MyWeeklyTimeEntriesPage;
+import com.dynamics.crm4.poqa.proMXSeleniumFramework.pages.SalesActivityDashboardPage;
 
 
 
@@ -18,7 +24,11 @@ public class BaseTest {
     public DriverFactory df;
 	public Properties prop;
 	public SoftAssert softAssert;
-	
+	public LoginUserPage loginUserPage;
+	public LoginPage loginPage;
+	public HomePage homePage;
+	public MyWeeklyTimeEntriesPage myWeeklyTimeEntriesPage;
+	public SalesActivityDashboardPage salesActivityDashBoardPage;
 	
 	@Parameters({"browser"})
 	@BeforeTest
@@ -35,8 +45,8 @@ public class BaseTest {
         }
         
 		this.driver = df.initDriver(prop.getProperty("browser"));
+		loginUserPage = new LoginUserPage(driver);
 		
-		this.softAssert = new SoftAssert();
 		
 	}
 

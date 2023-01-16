@@ -38,13 +38,13 @@ public class DriverFactory {
 	public WebDriver initDriver(String browserName)
 	{
 		System.out.println("Browser name is : " + browserName);
-	//	optionsManager= new OptionsManager(prop);
+	
 		if(browserName.equalsIgnoreCase("chrome"))
 		{
 			
 			    WebDriverManager.chromedriver().setup();
 			    driver= new ChromeDriver();
-			  //  tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
+			 
 			
 		}
 		else if(browserName.equalsIgnoreCase("firefox"))
@@ -68,7 +68,7 @@ public class DriverFactory {
 			System.out.println("Please pass the right browser Name" );
 		}
 		
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		driver.get(prop.getProperty("url"));
@@ -92,8 +92,8 @@ public class DriverFactory {
 		 this.prop = new Properties();
 		 FileInputStream ip = null;
 		 
-		// String envName = System.getProperty("env");
-		 ip = new FileInputStream("./proMXSeleniumFramework/src/test/resources/config/config.properties");
+		
+		 ip = new FileInputStream("./src/test/resources/config/config.properties");
 		 
 		
 		 

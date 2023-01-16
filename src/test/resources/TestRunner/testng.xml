@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Open Cart Suite"  verbose="4"  parallel="tests"  thread-count="5">
+<suite name="ProMX Suite"  verbose="4"  parallel="tests"  thread-count="5">
 
 <listeners>
  <listener class-name= "com.dynamics.crm4.poqa.proMXSeleniumFramework.listeners.ExtentReportListener" />
@@ -9,10 +9,10 @@
  
 </listeners>
 
-     <test name=""  >
+     <test name="Time Entry Tests"  >
        <parameter name="browser" value="chrome" />
 		<classes>
-			 <class name="" />
+			 <class name="com.dynamics.crm4.poqa.proMXSeleniumFramework.tests.MyWeeklyTimeEntriesTest" />
 		</classes>
 	</test>
 
