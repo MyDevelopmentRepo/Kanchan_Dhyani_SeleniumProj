@@ -1,29 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="ProMX Suite"  verbose="4"  parallel="tests"  thread-count="5">
+<suite name="ProMX Suite" parallel="tests" verbose="4">
 
-<listeners>
- <listener class-name= "com.dynamics.crm4.poqa.proMXSeleniumFramework.listeners.ExtentReportListener" />
- <listener class-name= "com.dynamics.crm4.poqa.proMXSeleniumFramework.listeners.TestAllureListener" />
- 
-</listeners>
+	<listeners>
+		<listener
+			class-name="com.dynamics.crm4.poqa.proMXSeleniumFramework.listeners.ExtentReportListener" />
+		<listener
+			class-name="com.dynamics.crm4.poqa.proMXSeleniumFramework.listeners.TestAllureListener" />
+	</listeners>
 
-     <test name="Time Entry Tests"  >
-       <parameter name="browser" value="chrome" />
+	<test name="Time Entry Tests">
+		<parameter name="browser" value="chrome" />
 		<classes>
-			 <class name="com.dynamics.crm4.poqa.proMXSeleniumFramework.tests.MyWeeklyTimeEntriesTest" />
+			<class
+				name="com.dynamics.crm4.poqa.proMXSeleniumFramework.tests.TimeEntriesCreationAndApproval" />
 		</classes>
 	</test>
-
-	
-	
-	
-	
-	
-	
-	
-	
-
 
 </suite>

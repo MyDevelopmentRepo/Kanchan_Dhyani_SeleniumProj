@@ -1,7 +1,5 @@
 package com.dynamics.crm4.poqa.proMXSeleniumFramework.listeners;
 
-import static com.dynamics.crm4.poqa.proMXSeleniumFramework.factory.DriverFactory.*;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +10,6 @@ import org.testng.ITestResult;
 import com.dynamics.crm4.poqa.proMXSeleniumFramework.factory.DriverFactory;
 
 import io.qameta.allure.Attachment;
-
 
 public class TestAllureListener implements ITestListener {
 
@@ -40,28 +37,31 @@ public class TestAllureListener implements ITestListener {
 
 	@Override
 	public void onStart(ITestContext iTestContext) {
-	//	System.out.println("I am in onStart method " + iTestContext.getName());
-		//iTestContext.setAttribute("WebDriver", BasePage.getDriver());
+		// System.out.println("I am in onStart method " + iTestContext.getName());
+		// iTestContext.setAttribute("WebDriver", BasePage.getDriver());
 	}
 
 	@Override
 	public void onFinish(ITestContext iTestContext) {
-	//	System.out.println("I am in onFinish method " + iTestContext.getName());
+		// System.out.println("I am in onFinish method " + iTestContext.getName());
 	}
 
 	@Override
 	public void onTestStart(ITestResult iTestResult) {
-	//	System.out.println("I am in onTestStart method " + getTestMethodName(iTestResult) + " start");
+		// System.out.println("I am in onTestStart method " +
+		// getTestMethodName(iTestResult) + " start");
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult iTestResult) {
-	//	System.out.println("I am in onTestSuccess method " + getTestMethodName(iTestResult) + " succeed");
+		// System.out.println("I am in onTestSuccess method " +
+		// getTestMethodName(iTestResult) + " succeed");
 	}
 
 	@Override
 	public void onTestFailure(ITestResult iTestResult) {
-	//	System.out.println("I am in onTestFailure method " + getTestMethodName(iTestResult) + " failed");
+		// System.out.println("I am in onTestFailure method " +
+		// getTestMethodName(iTestResult) + " failed");
 		Object testClass = iTestResult.getInstance();
 		WebDriver driver = DriverFactory.driver;
 		// Allure ScreenShotRobot and SaveTestLog
@@ -70,18 +70,19 @@ public class TestAllureListener implements ITestListener {
 			saveScreenshotPNG(driver);
 		}
 		// Save a log on allure.
-		saveTextLog(getTestMethodName(iTestResult) + " failed and screenshot taken!");		
+		saveTextLog(getTestMethodName(iTestResult) + " failed and screenshot taken!");
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult iTestResult) {
-		//System.out.println("I am in onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
+		// System.out.println("I am in onTestSkipped method " +
+		// getTestMethodName(iTestResult) + " skipped");
 	}
 
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-	//	System.out.println("Test failed but it is in defined success ratio " + getTestMethodName(iTestResult));
+		// System.out.println("Test failed but it is in defined success ratio " +
+		// getTestMethodName(iTestResult));
 	}
 
 }
-
