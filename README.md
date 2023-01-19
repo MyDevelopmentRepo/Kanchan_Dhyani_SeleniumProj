@@ -42,3 +42,5 @@ For allure report, from the above cmd prompt, run below command
       
 Allure report should open.
 
+
+**PS- There are some issues with the application, eg: Butoon "New" to create new time entry disappears, So In such situations, the code will fail and exceptions might come. Please clean your browsing history and try to rerun the flow. This might help.**
