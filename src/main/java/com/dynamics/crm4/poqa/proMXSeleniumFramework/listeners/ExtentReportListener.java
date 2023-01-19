@@ -1,8 +1,7 @@
 
-
 package com.dynamics.crm4.poqa.proMXSeleniumFramework.listeners;
 
-import static com.dynamics.crm4.poqa.proMXSeleniumFramework.factory.DriverFactory.*;
+import static com.dynamics.crm4.poqa.proMXSeleniumFramework.factory.DriverFactory.getScreenshot;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,10 +18,8 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-//import com.dynamics.crm4.poqa.proMXSeleniumFramework.factory.DriverFactory;
-//import static com.dynamics.crm4.poqa.proMXSeleniumFramework.factory.DriverFactory.getScreenshot;
 
-public class ExtentReportListener  implements ITestListener {
+public class ExtentReportListener implements ITestListener {
 
 	private static final String OUTPUT_FOLDER = "./ExtentReports/";
 	private static final String FILE_NAME = "TestExecutionReport.html";
@@ -30,7 +27,6 @@ public class ExtentReportListener  implements ITestListener {
 	private static ExtentReports extent = init();
 	public static ThreadLocal<ExtentTest> test = new ThreadLocal<ExtentTest>();
 	private static ExtentReports extentReports;
-	
 
 	private static ExtentReports init() {
 
@@ -40,11 +36,10 @@ public class ExtentReportListener  implements ITestListener {
 			try {
 				Files.createDirectories(path);
 			} catch (IOException e) {
-				// fail to create directory
-				e.printStackTrace();
+				// log.error("Error :::", e);
 			}
 		}
-		
+
 		extentReports = new ExtentReports();
 		ExtentSparkReporter reporter = new ExtentSparkReporter(OUTPUT_FOLDER + FILE_NAME);
 		reporter.config().setReportName("proMX Selenium Automation Test Results");
@@ -55,20 +50,17 @@ public class ExtentReportListener  implements ITestListener {
 		extentReports.setSystemInfo("Team", "ProMX QA Team");
 		extentReports.setSystemInfo("Customer Name", "NAL");
 
-		//extentReports.setSystemInfo("ENV NAME", System.getProperty("env"));
-
 		return extentReports;
 	}
 
 	@Override
 	public synchronized void onStart(ITestContext context) {
-		System.out.println("Test Suite started!");
-		
+
 	}
 
 	@Override
 	public synchronized void onFinish(ITestContext context) {
-		System.out.println(("Test Suite is ending!"));
+
 		extent.flush();
 		test.remove();
 	}
@@ -81,7 +73,6 @@ public class ExtentReportListener  implements ITestListener {
 		int mid = qualifiedName.substring(0, last).lastIndexOf(".");
 		String className = qualifiedName.substring(mid + 1, last);
 
-		System.out.println(methodName + " started!");
 		ExtentTest extentTest = extent.createTest(result.getMethod().getMethodName(),
 				result.getMethod().getDescription());
 
@@ -96,29 +87,32 @@ public class ExtentReportListener  implements ITestListener {
 	}
 
 	public synchronized void onTestSuccess(ITestResult result) {
-		System.out.println((result.getMethod().getMethodName() + " passed!"));
+
 		test.get().pass("Test passed");
-		//test.get().pass(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot()).build());
+		// test.get().pass(result.getThrowable(),
+		// MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot()).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 
 	public synchronized void onTestFailure(ITestResult result) {
-		System.out.println((result.getMethod().getMethodName() + " failed!"));
+
 		String methodName = result.getMethod().getMethodName();
 
-		test.get().fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot(methodName)).build());
+		test.get().fail(result.getThrowable(),
+				MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot(methodName)).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 
 	public synchronized void onTestSkipped(ITestResult result) {
-		System.out.println((result.getMethod().getMethodName() + " skipped!"));
+
 		String methodName = result.getMethod().getMethodName();
-		test.get().skip(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot(methodName)).build());
+		test.get().skip(result.getThrowable(),
+				MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot(methodName)).build());
 		test.get().getModel().setEndTime(getTime(result.getEndMillis()));
 	}
 
 	public synchronized void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		System.out.println(("onTestFailedButWithinSuccessPercentage for " + result.getMethod().getMethodName()));
+
 	}
 
 	private Date getTime(long millis) {
